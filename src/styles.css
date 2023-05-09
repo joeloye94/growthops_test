@@ -1,0 +1,153 @@
+body {
+    padding:0;
+    margin:0;
+    font-family:sans-serif;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+nav{
+    background-color: #faf9f3;
+    color:#554344;
+    padding:36px 0;
+    text-align: center;
+    font-size:2.25rem;
+}
+nav h1{
+    margin:0;
+}
+
+section{
+    margin:0 133px
+}
+
+/*----------
+
+dropdown field
+---------*/
+.dropdown__container{
+    margin:70px 0 40px;
+}
+.card__row{
+    display:flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+}
+.input__label{
+    display:block;
+    margin-bottom:15px;
+    font-size:1rem;
+}
+
+.input__filter{
+    color:#5d5d5d;
+    background-color: #fff;
+    display:block;
+    min-width:300px;
+    max-width:340px;
+    padding:0.85rem 0.75rem;
+    font-size:1rem;
+}
+
+/*----------
+
+cards
+---------*/
+.card__card{
+    padding:2rem 1.5rem;
+    background-color: #fff;
+    box-shadow:0 0 5px #ddd;
+    width:100%;  
+    display:flex;
+    flex-direction: row;
+    min-height:400px;
+}
+.card__box{
+    margin:20px 25px;
+}
+.card__avatar img{
+    border-radius: 50%;
+}
+.card__content{
+    margin-left:20px;
+}
+.card__content h6{
+    font-size:1.5rem;
+    margin:.5rem 0 1.125rem;
+    height:60px;
+}
+.card__content p{
+    font-size:1rem;
+    margin:0 0 0.5rem;
+}
+.card__content b{
+    word-break:break-all;
+}
+
+@media screen and (min-width:1300px){
+    .card__avatar img{
+        border-radius: 50%;
+        max-width: 74px;
+    }
+    .card__box{
+        max-width:30%;
+        flex:1 1 30%;
+    }
+    .card__box:nth-child(3n+1),
+    .card__box:nth-child(1){
+        margin-left:0;
+    }
+    .card__box:nth-child(3n){
+        margin-right:0;
+    }
+}
+@media screen and (max-width:1299px) and (min-width:992px){
+    
+    .card__box{
+        max-width:47%;
+        flex:1 1 45%;
+    }
+    .card__box:nth-child(odd){
+        margin-left:0;
+    }
+    .card__box:nth-child(even){
+        margin-right:0;
+    }
+}
+
+@media screen and (max-width:1060px) and (min-width:992px){
+    .card__card{
+        min-height:450px;
+    }
+}
+@media screen and (max-width:991px){
+    .card__card{
+        min-height:unset;
+    }
+    .card__box{
+        max-width:100%;
+        flex:1 1 100%;
+        display:flex;
+        flex-direction: column;
+        margin:20px 0;
+    }
+    .card__card{
+        justify-content: space-around;
+    }
+    section{
+        margin:0 30px
+    }
+}
+@media screen and (max-width:499px){
+    .card__card{
+        flex-direction: column;
+    }
+    .card__avatar{
+        margin-bottom:20px;
+    }
+    .card__content{
+        margin-left:0;
+    }
+}

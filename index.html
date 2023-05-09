@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+    <link href="src/styles.css" rel="stylesheet" type="text/css" />
+
+    <!--assignment 2-->
+    <script src="src/script.js"></script>
+</head>
+
+
+<body>
+
+    <!--assignment 1-->
+    <nav>
+        <h1>DISTRICT MANAGER</h1>
+    </nav>
+
+    <section>
+        <div class="dropdown__container">
+            <label class="input__label" for="filter">Filter for Age</label>
+            <select id="filter" class="input__filter">
+                <option value="0">All</option>
+                <option value="1">20 and beow</option>
+                <option value="2">21-39</option>
+                <option value="3">40 and above</option>
+            </select>
+        </div>
+        
+        <hr>
+        
+        <div class="card__container">
+            <div class="card__row" id="cards"></div>
+        </div>
+    </section>
+</body>
+<script>
+    //assignment 2
+    rngNo = Math.floor(Math.random() * 20)
+    // while(rngNo % 2 != 1){
+        
+    // }
+
+    console.log(rngNo)
+    drawDiamond(rngNo)
+    alert(`elo abangs kakaks you may check the browser console for RNG drawDiamond(${rngNo})`)
+    
+    
+    //assignment 1
+    //i've changed to https due to CORS blocking the request sending
+    let getData = async ()=>{
+        return new Promise(async (res,rej)=>{
+            await fetch("https://www.mocky.io/v2/5d73bf3d3300003733081869",{}).then(res=>{
+                return res.json()
+            }).then(jason=>{
+                res(jason)
+            })
+        })
+    }
+    getData().then((res)=>{
+        buildList(res)
+    })
+    
+
+    function buildList(d){
+        if(d.length){
+            const cards = document.getElementById("cards")
+
+            appendItems(d)
+            
+            document.getElementById("filter").addEventListener("change",(ev)=>{
+                let filterUserData = d.filter((item)=>{
+                    if(ev.target.value == 0){
+                        return item
+                    }
+                    else if(ev.target.value == 1){
+                        return item.age <= 20
+                    }
+                    else if(ev.target.value == 2){
+                        return item.age < 40 && item.age > 20
+                    }
+                    else if(ev.target.value == 3){
+                        return item.age >= 40
+                    }
+                    else{
+                        return null
+                    }
+                })
+                appendItems(filterUserData)
+            })
+        }
+    }
+    function appendItems(d){
+        cards.innerHTML = ""
+        if(!d) return
+        d.forEach(v=>{
+            cards.innerHTML += `
+            <div class="card__box">
+                <div class="card__card">
+                    <div class="card__avatar">
+                        <img src="img/userphoto-prime1.jpg" />
+                    </div>
+                    <div class="card__content">
+                        <h6>${v.name}</h6>
+
+                        <p>
+                            Email:
+                            <b>${v.email}</b>
+                        </p>
+                        <p>
+                            Mobile:
+                            <b>${v.phone}</b>
+                        </p>
+                        <p>
+                            Company:
+                            <b>${v.company}</b>
+                        </p>
+                        <p>
+                            Address:
+                            <b>${Object.values(v.address).join(", ")}</b>
+                        </p>
+                        <p>
+                            Website:
+                            <b>${v.website}</b>
+                        </p>
+                        <p>
+                            Age:
+                            <b>${v.age}</b>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            `
+        })
+    }
+    
+</script>
+</html>
