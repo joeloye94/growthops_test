@@ -80,6 +80,7 @@ cards
     font-size:1.5rem;
     margin:.5rem 0 1.125rem;
     height:60px;
+    text-transform: uppercase;
 }
 .card__content p{
     font-size:1rem;
